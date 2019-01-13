@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+nav {
+    margin-bottom: 0px;;
+}
+body {
+    
+    background-color: #dcdcdcdc
+}
+#toptext{
+    background-color: #d7cec7;
+    margin-top: 0px;
+}
+
+h5{
+    font-family: 'Shadows Into Light';
+    font-size: 25px;
+}
+h1 {
+    font-family: Lora;
+    font-size: 40px;
+}
