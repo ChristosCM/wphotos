@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+nav {
+    margin-bottom: 0px;
+}
+body {
+    
+    background-color: #dcdcdcdc
+}
+#toptext{
+    background-color: #d7cec7;
+    margin-top: 0px;
+}
+
+h5{
+    font-family: 'Shadows Into Light';
+    font-size: 25px;
+}
+h1 {
+    font-family: Lora;
+    font-size: 40px;
+}
+.fa-1x {
+font-size: 1.5rem;
+}
+.navbar-toggler.toggler-example {
+cursor: pointer;
+}
+.dark-blue-text {
+color: #0A38F5;
+}
+.dark-pink-text {
+color: #AC003A;
+}
+.dark-amber-text {
+color: #ff6f00;
+}
+.dark-teal-text {
+color: #004d40;
+}
+.navbar{
+    margin-bottom: 0;
+}
+.carousel {
+    height: 500px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+/* Since positioning the image, we need to help out the caption */
+ .carousel-caption {
+    z-index: 10;
+}
+/* Declare heights because of positioning of img element */
+ .carousel .item {
+    width: 100%;
+    height: 500px;
+    background-color: #777;
+}
+.carousel-inner > .item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 500px;
+}
+@media (min-width: 768px) {
+    .carousel-caption p {
+        margin-bottom: 0px;
+        font-size: 21px;
+        line-height: 1.4;
+    }
+}
+img {
+    background: grey;
+}
