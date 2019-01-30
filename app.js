@@ -33,19 +33,30 @@ var upload = multer({
 app.get('/people', function (req, res) {
     fs.readFile( __dirname + "/" + "people.json", 'utf8', function (err, data) {
        res.type('json');
-       res.end( data );
+       res.status(200).end( data );
     });
  })
 app.get('/people/:username', function (req,res) {
     fs.readFile(__dirname + "/" + "people.json", 'utf-8',function (err,data){
+        console.log(req.params.username);
         var people = JSON.parse(data);
+        var found = false;
         for (var i=0; i<people.length; i++){
             if (people[i].username == req.params.username){
                 var person = people[i]
+                found = true;
+                
+                
             }
         }
+        if (found==true){
+            res.type('json');
+                res.status(200).end(JSON.stringify(person));
+        }else{
         res.type('json');
-        res.end(JSON.stringify(person));
+        res.status(204).end(JSON.stringify("No one found"));
+        }
+        
 
     });
 })
@@ -63,11 +74,10 @@ app.get('/images', function(req,res){
             }
         }
         
-        res.send(JSON.stringify(sendIm))
+        res.status(200).send(JSON.stringify(sendIm))
         
     });
     
-    //res.send(JSON.stringify(sendIm));
      
 });
 function exists(user){
@@ -102,8 +112,9 @@ function exists(user){
             "forename" : req.body.forename,
             "surname" : req.body.surname,
             "username" : req.body.username,
+            "email" : req.body.email
          }
-         fs.readFile("eople.json" ,function(err,data){
+         fs.readFile("people.json" ,function(err,data){
             if (err){console.log(err)}
             var people = JSON.parse(data);
             people.push(user);
@@ -118,11 +129,17 @@ function exists(user){
 //function that uploads images and stores their place and category in a json file
  app.post("/api/Upload", function(req, res) { 
     upload(req, res, function(err) {  
+        ex = false;
+
+        fs.readFile( __dirname + "/" + "people.json", 'utf8', function (err, data) {
+            var people = JSON.parse(data)
+            for (var i=0; i<people.length; i++){
+                if (people[i].username == req.body.user){
+                    ex = true;
+                }
+            }
         var newim = [];
-        var ex = exists(req.body.user)
-        console.log(ex);
-        if (exists(req.body.user)){
-            console.log("Truth");
+        if (ex){
         for (i=0; i<req.files.length; i++){
             if (req.files[i].mimetype != "image/jpeg" && req.files[i].mimetype != "image/png" ){
                 fs.unlink(req.files[i].path, (err) => {
@@ -133,7 +150,9 @@ function exists(user){
             }
             var newImage = {
                 "path" : req.files[i].path,
-                "category": req.body.category
+                "category": req.body.category,
+                "date": new Date(),
+                "user": req.body.user
             };
             newim.push(newImage);
         }
@@ -156,16 +175,15 @@ function exists(user){
         return res.status(201).end("Files uploaded sucessfully!");
     }else{
         for (i=0; i<req.files.length; i++){
-            console.log(req.files[0].path);
         fs.unlink(req.files[i].path, (err) => {
             if (err) throw err;
             //console.log(req.files[i].path+' was deleted, Incorrect User');
           });
         }
-        return res.status(400).end("User: "+req.body.user+" was not found");
+        return res.end("User: "+req.body.user+" was not found. File not uploaded. If you want to upload, please signup.");
     }
     });
-    
+});
 });
 app.set('view engine', 'html');
 var options = {

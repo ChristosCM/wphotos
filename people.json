@@ -1,11 +1,1 @@
-[
-   {"forename" : "exam1",
-   "surname" : "exam2",
-   "username" : "ex12"
-},
-{
-   "forename":"Delia", 
-   "surname":"Derbyshire",
-   "username":"doctorwhocomposer"
-}
-]
+[{"forename":"exam1","surname":"exam2","username":"ex12","email":"example@email.com"},{"forename":"Delia","surname":"Derbyshire","username":"doctorwhocomposer"},{"forename":"User ","surname":"Created","username":"user3","email":"someone@example.com"}]
