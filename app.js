@@ -146,7 +146,8 @@ function exists(user){
                     if (err) throw err;
                     console.log(req.files[i].path+' was deleted, Wrong Type');
                   });
-                return res.status(400).end("Incorect file type for: "+req.files[i].originalname+" Only JPEG or PNG files are accepted");
+                  //wrong status in order to print right statement
+                return res.status(200).end("Incorect file type for: "+req.files[i].originalname+" Only JPEG or PNG files are accepted");
             }
             var newImage = {
                 "path" : req.files[i].path,

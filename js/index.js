@@ -1,5 +1,4 @@
-//import { getDefaultSettings } from "http2";
-
+//function same as one below but this one is invoked when user clicks a category
 function update(){
     $(document).ready(function() {
         var categories = ischecked();
@@ -15,7 +14,7 @@ function update(){
                 $("#imshow").html('<div class ="container-fluid" id="im">');
                 for (i=0; i<images.length; i++){
                     date = new Date(images[i].date)
-                    $("#im").append('<figure class="figure"><img src="'+images[i].path+'"class = "image"><figcaption class="figure-caption">Category: '+images[i].category+' /Posted by user: '+images[i].user+' /On: '+date.getFullYear()+'/'+date.getMonth()+1+'/'+date.getDate()+'</figcaption></figure><div class="divider"><hr class="half-rule"></hr></div>')
+                    $("#im").append('<figure class="figure"><img src="'+images[i].path+'"class = "image"><figcaption class="figure-caption">Category: '+images[i].category+' Posted by user: '+images[i].user+' On: '+date.getFullYear()+'/'+date.getMonth()+1+'/'+date.getDate()+'</figcaption></figure><div class="divider"><hr class="half-rule"></hr></div>')
                 }
                 
                 $("imshow").html('</div>');
@@ -120,16 +119,16 @@ $(document).ready(function(){
     });
 });
 $(document).ready(function() {
-update();
 $('#frmUploader').submit(function(e) {
    $("#status").empty().text("File is uploading...");
    $(this).ajaxSubmit({
 
        error: function(xhr) {
-   status('Error: ' + xhr.status);
+        $("#status").empty().text(xhr);
        },
 
        success: function(response) {
+        update();
    $("#status").empty().text(response);
 }
 });

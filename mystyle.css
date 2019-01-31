@@ -29,6 +29,10 @@ nav {
 #frm {
     margin-left: 20px;
 }
+/* this smooth scrolling doesnt work on a couple browsers: Edge and Safari. in order to counteract this a js function needs to be built (too much hussle) */
+html {
+    scroll-behavior: smooth;
+  }
 .figure{
     font-style: italic;
     text-emphasis: bold;
