@@ -1,7 +1,8 @@
+//import { getDefaultSettings } from "http2";
+
 function update(){
     $(document).ready(function() {
         var categories = ischecked();
-        console.log(categories.length);
         if (categories.length!=0){
         $.ajax({
             url: '/images',
@@ -13,8 +14,10 @@ function update(){
                 if (images.length){
                 $("#imshow").html('<div class ="container-fluid" id="im">');
                 for (i=0; i<images.length; i++){
-                    $("#im").append('<figure class="figure"><img src="'+images[i].path+'"class = "image"><figcaption class="figure-caption">Category: '+images[i].category+' /Posted by user: '+images[i].user+' /On: '+images[i].date+'</figcaption></figure><div class="divider"></div>')
+                    date = new Date(images[i].date)
+                    $("#im").append('<figure class="figure"><img src="'+images[i].path+'"class = "image"><figcaption class="figure-caption">Category: '+images[i].category+' /Posted by user: '+images[i].user+' /On: '+date.getFullYear()+'/'+date.getMonth()+1+'/'+date.getDate()+'</figcaption></figure><div class="divider"><hr class="half-rule"></hr></div>')
                 }
+                
                 $("imshow").html('</div>');
             }else{
                 $("#imshow").html('<h3>Unfortunately, there are no images in the categories you have selected</h3>');
@@ -23,7 +26,7 @@ function update(){
             },
 
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                alert("Something Went Wrong"); console.log("Error: " + errorThrown); 
             }   
 
                 });
@@ -34,6 +37,7 @@ function update(){
             }
         });
 }
+// .getFullYear()+'/'+images[i].date.getMonth()+'/'+images[i].date.getDate()
 //this function hides the about section and the signup form that can be both shown with the use of buttons.
 $(document).ready(function() {
     var x = document.getElementById("about");
@@ -137,7 +141,6 @@ return false;
 
 $(document).ready(function() {
     var categories = ischecked();
-        console.log(categories.length);
         if (categories.length!=0){
         $.ajax({
             url: '/images',

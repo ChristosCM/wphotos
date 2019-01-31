@@ -66,20 +66,20 @@ app.get('/images', function(req,res){
     var sendIm = [];
     fs.readFile("./Images/images.json" ,function(err,data){
         var images = JSON.parse(data);
-        for (i=0; i<images.length; i++){
+        for (i=images.length-1; i>0; i--){
             for (y=0; y<categories.length; y++){
                 if (images[i].category == categories[y]){
                     sendIm.push(images[i]);
                 }
             }
         }
-        
         res.status(200).send(JSON.stringify(sendIm))
         
     });
     
      
 });
+//function to check if user exists. Not used as it needs to be implemented with a callback to to a-sync req.
 function exists(user){
     fs.readFile( __dirname + "/" + "people.json", 'utf8', function (err, data) {
         var people = JSON.parse(data)
@@ -194,7 +194,15 @@ app.use(express.static('./', options));
 app.get('/' , function(req,res){
     return res.status(200).sendFile(__dirname + '/index.html');
 });
-
+ // Handle 404
+ app.use(function(req, res) {
+    res.status(404).send("404: Page not found");
+ });
+ 
+ // Handle 500
+ app.use(function(error, req, res, next) {
+    res.status(500).send('500: Internal Server Error');
+ });
 app.listen(port);
 console.log("The app is listening now on localhost:8080")
 module.exports = app;

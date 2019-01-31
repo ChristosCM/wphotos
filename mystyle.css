@@ -33,6 +33,21 @@ nav {
     font-style: italic;
     text-emphasis: bold;
 }
+#footer {
+    background-color: #353839;
+}
+#footer h3{
+    text-align: center;
+    color: #d7cec7;
+}
+#footer h4{
+    text-align: center;
+    color: #d7cec7;
+}
+#footer a{
+    color: #89CFF0;
+
+}
 body {
     
     background-color: #dcdcdcdc
