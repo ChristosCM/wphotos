@@ -103,7 +103,7 @@ function exists(user){
             "surname" : req.body.surname,
             "username" : req.body.username,
          }
-         fs.readFile("eople.json" ,function(err,data){
+         fs.readFile("people.json" ,function(err,data){
             if (err){console.log(err)}
             var people = JSON.parse(data);
             people.push(user);
