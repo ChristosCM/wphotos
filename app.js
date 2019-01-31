@@ -5,7 +5,9 @@ var multer = require("multer");
 var app = express();
 
 //declaration of PORT, important for cloud hosting on AWS (amazon web services)
-var port = process.env.PORT || 8080;
+//var port = process.env.PORT || 8080;
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -204,7 +206,7 @@ app.get('/' , function(req,res){
  app.use(function(error, req, res, next) {
     res.status(500).send('500: Internal Server Error');
  });
-app.listen(port);
+app.listen(server_port, server_ip_address);
 console.log("The app is listening now on localhost:8080")
 module.exports = app;
 
