@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "app.test.js"
+    "test": "jest",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,9 @@
     "url": "https://github.com/ChristosCM/wphotos/issues"
   },
   "homepage": "https://github.com/ChristosCM/wphotos#readme",
-  "dependencies": {},
+  "dependencies": {
+    "supertest": "^3.4.2"
+  },
   "devDependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
