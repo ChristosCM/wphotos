@@ -94,7 +94,7 @@ function exists(user){
 }
 
  app.post('/people', function (req, res) {
-    fs.readFile( __dirname + "/" + "people.json", 'utf8', function (err, data) {
+    fs.readFile( __dirname + "/" + "people.json", function (err, data) {
         var people = JSON.parse(data)
         if (req.body.access_token != "concertina"){
             res.status(403).send();
