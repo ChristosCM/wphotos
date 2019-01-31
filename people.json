@@ -1,11 +1,1 @@
-[
-   {"forename" : "exam1",
-   "surname" : "exam2",
-   "username" : "ex12"
-},
-{
-   "forename":"Delia", 
-   "surname":"Derbyshire",
-   "username":"doctorwhocomposer"
-}
-]
+[{"forename":"exam1","surname":"exam2","username":"ex12","email":"example@email.com"},{"forename":"Delia","surname":"Derbyshire","username":"doctorwhocomposer","email": ""},{"forename":"User ","surname":"Created","username":"user3","email":"someone@example.com"},{"forename":"Chris ","surname":"Nort","username":"cnort","email":"cnort@gmail.com"},{"forename":"Lebron ","surname":"Names","username":"lename","email":"leuser@leggod.com"},{"forename":"Coffee ","surname":"Machine","username":"human","email":"notrobot@robotworld.com"},{"forename":"Palidrome ","surname":"Emordilap","username":"anna","email":"comdot@example.com"},{"forename":"Power","surname":"Poses","username":"pp","email":"power@hotmail.com"}]

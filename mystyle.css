@@ -5,6 +5,53 @@
 nav {
     margin-bottom: 0px;
 }
+#navbar{
+    z-index: 9999;
+    height: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.3s;
+}
+#navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+  }
+  
+  #navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+#frm {
+    margin-left: 20px;
+}
+/* this smooth scrolling doesnt work on a couple browsers: Edge and Safari. in order to counteract this a js function needs to be built (too much hussle) */
+html {
+    scroll-behavior: smooth;
+  }
+.figure{
+    font-style: italic;
+    text-emphasis: bold;
+}
+#footer {
+    background-color: #353839;
+}
+#footer h3{
+    text-align: center;
+    color: #d7cec7;
+}
+#footer h4{
+    text-align: center;
+    color: #d7cec7;
+}
+#footer a{
+    color: #89CFF0;
+
+}
 body {
     
     background-color: #dcdcdcdc
@@ -17,9 +64,16 @@ body {
     height: 40px;
 
 }
-img {
-    
-  }
+form, label{
+    text-emphasis: bold;
+}
+#car{
+    background-color: #d7cec7
+
+}
+h3{
+    text-align: center;
+}
 h5{
     font-family: 'Shadows Into Light';
     font-size: 25px;
@@ -52,7 +106,7 @@ color: #004d40;
 .carousel {
     height: 500px;
     margin-bottom: 0;
-    margin-top: 0;
+    margin-top: 52px;
 }
 /* Since positioning the image, we need to help out the caption */
  .carousel-caption {
@@ -81,8 +135,10 @@ color: #004d40;
 
 * {box-sizing: border-box}
 
-
-/* Make the image to responsive */
+#id p{
+    text-align: center,
+}
+/* Make the image responsive so that it shrinks as the screen reduces in size. */
 .image {
 display: block;
 max-width: 100%;

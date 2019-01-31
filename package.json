@@ -1,0 +1,26 @@
+{
+  "name": "wphotos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "app.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristosCM/wphotos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChristosCM/wphotos/issues"
+  },
+  "homepage": "https://github.com/ChristosCM/wphotos#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jest": "^24.0.0",
+    "multer": "^1.4.1"
+  }
+}

@@ -1,3 +1,4 @@
+//function same as one below but this one is invoked when user clicks a category
 function update(){
     $(document).ready(function() {
         var categories = ischecked();
@@ -12,32 +13,122 @@ function update(){
                 if (images.length){
                 $("#imshow").html('<div class ="container-fluid" id="im">');
                 for (i=0; i<images.length; i++){
-                    $("#imshow").append('<img src="'+images[i].path+'"class = "image"><p>'+images[i].category+'</p><div class="divider"></div>')
+                    date = new Date(images[i].date)
+                    $("#im").append('<figure class="figure"><img src="'+images[i].path+'"class = "image"><figcaption class="figure-caption">Category: '+images[i].category+' Posted by user: '+images[i].user+' On: '+date.getFullYear()+'/'+date.getMonth()+1+'/'+date.getDate()+'</figcaption></figure><div class="divider"><hr class="half-rule"></hr></div>')
                 }
+                
                 $("imshow").html('</div>');
+            }else{
+                $("#imshow").html('<h3>Unfortunately, there are no images in the categories you have selected</h3>');
             }
+
             },
 
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                alert("Something Went Wrong"); console.log("Error: " + errorThrown); 
             }   
 
                 });
             
-            } 
+            } else{
+                $("#imshow").html('<h3>No Categories Selected</h3>');
+
+            }
         });
 }
+// .getFullYear()+'/'+images[i].date.getMonth()+'/'+images[i].date.getDate()
+//this function hides the about section and the signup form that can be both shown with the use of buttons.
 $(document).ready(function() {
+    var x = document.getElementById("about");
+    x.style.display = "none";
+    var y = document.getElementById("signup");
+    y.style.display = "none";
 
+
+});
+//function to show and hide about section on click of the navbar item
+function shFunction() {
+    var x = document.getElementById("about");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  //function to show and hide the signup menu
+  function shsign() {
+    var x = document.getElementById("signup");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      $('#sign').html("Hide");
+    } else {
+      x.style.display = "none";
+      $('#sign').html("Sign Up");
+
+    }
+  }
+//function to show navbar only when user is scrolling up
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+} 
+
+$(document).ready(function(){
+    $('#signUpload').submit(function(e) {
+   e.preventDefault();
+   var forename = $("#forename").val();
+   var surname = $("#surname").val();
+   var email = $("#email").val();
+   var username = $("#username").val();
+   if (forename === ''){
+    alert('Forename field is empty.');
+    return false;
+   }
+   if (surname === ''){
+    alert('Surname field is empty.');
+    return false;
+   }
+   if (username === ''){
+    alert('Username field is empty.');
+    return false;
+   }
+   $.get("/people/"+username, function(data){
+    if (data){
+        alert('A user with the username already exists, please select another username.')
+    }else {
+        $.ajax({
+            url: '/people',
+            type: 'POST',
+            data: {"forename": forename, "surname": surname, "email": email, "username": username, "access_token": "concertina"},
+            datatype: 'json',
+            success(data){
+                alert("The user has been created. Now you can upload your own pictures!");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            }
+        })
+    }
+});
+    });
+});
+$(document).ready(function() {
 $('#frmUploader').submit(function(e) {
    $("#status").empty().text("File is uploading...");
    $(this).ajaxSubmit({
 
        error: function(xhr) {
-   status('Error: ' + xhr.status);
+        $("#status").empty().text(xhr);
        },
 
        success: function(response) {
+        update();
    $("#status").empty().text(response);
 }
 });
@@ -48,8 +139,8 @@ return false;
 });
 
 $(document).ready(function() {
-        var categories = ischecked();
-    if (categories.length!=0){
+    var categories = ischecked();
+        if (categories.length!=0){
         $.ajax({
             url: '/images',
             type: 'GET',
@@ -60,17 +151,25 @@ $(document).ready(function() {
                 if (images.length){
                 $("#imshow").html('<div class ="container-fluid" id="im">');
                 for (i=0; i<images.length; i++){
-                    $("#imshow").append('<img src="'+images[i].path+'"class = "image"><p>'+images[i].category+'</p><div class="divider"></div>')
+                    $("#im").append('<figure class="figure"><img src="'+images[i].path+'"class = "image"><figcaption class="figure-caption">Category: '+images[i].category+' /Posted by user: '+images[i].user+' /On: '+images[i].date+'</figcaption></figure><div class="divider"></div>')
                 }
                 $("imshow").html('</div>');
+            }else{
+                $("#imshow").html('<h3>Unfortunately, there are no images in the categories you have selected</h3>');
             }
+
             },
+
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
                 alert("Status: " + textStatus); alert("Error: " + errorThrown); 
             }   
+
                 });
             
-            }  
+            } else{
+                $("#imshow").html('<h3>Please select a category.</h3>');
+
+            }
         });
     
 
